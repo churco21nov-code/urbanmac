@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UrbanMac – Catálogo</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #0e0e0e;
+  color: #fff;
+}
+
+/* HEADER / NAVEGACIÓN */
+header {
+  width: 100%;
+  background: linear-gradient(90deg, #00acc1, #00e5ff);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  box-shadow: 0 4px 15px rgba(0,0,0,.5);
+}
+
+header .logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+}
+
+header nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+header nav a:hover {
+  color: #000;
+}
+
+/* ENCABEZADO DEL CATÁLOGO */
+.encabezado {
+  width: 100%;
+  padding: 45px 0;
+  text-align: center;
+  border-bottom: 2px solid #00e5ff44;
+}
+
+.encabezado h1 {
+  font-size: 3.2rem;
+  letter-spacing: 7px;
+  font-weight: 800;
+  color: #00e5ff;
+  text-shadow: 0 0 8px #00e5ff88;
+}
+
+/* GRID DE PRODUCTOS */
+.grid-productos {
+  width: 90%;
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 45px;
+}
+
+/* TARJETA DE PRODUCTO */
+.item {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 14px;
+  transition: transform .3s ease;
+}
+
+.item:hover {
+  transform: scale(1.02);
+}
+
+.item img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  display: block;
+  transition: opacity .4s ease;
+  filter: brightness(0.9);
+}
+
+.item:hover img {
+  filter: brightness(1.05);
+}
+
+.hover-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.item:hover .hover-img {
+  opacity: 1;
+}
+
+.item:hover .main-img {
+  opacity: 0;
+}
+
+.item-info {
+  margin-top: 12px;
+  padding-left: 4px;
+}
+
+.item-info h3 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #00e5ff;
+  margin-bottom: 4px;
+}
+
+.item-info p {
+  font-size: 1.1rem;
+  color: #bdbdbd;
+}
+
+/* RESPONSIVE */
+@media (min-width: 760px) {
+  .grid-productos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .grid-productos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER CON NAVEGACIÓN -->
+<header>
+  <div class="logo">URBANMAC</div>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="productos2.html">Ropa</a>
+    <a href="gorras.html">Gorras</a>
+    <a href="#">Accesorios</a>
+    <a href="#">Ofertas</a>
+    <a href="#">Novedades</a>
+  </nav>
+</header>
+
+<!-- ENCABEZADO DEL CATÁLOGO -->
+<section class="encabezado">
+   <h1>ACCESORIOS </h1>
+</section>
+
+<!-- CATÁLOGO UNIFICADO -->
+<section class="grid-productos">
+
+  <!-- ROPA -->
+  <div class="item">
+    <img src="playera1.jpg" class="main-img">
+    <img src="playera2.jpg" class="hover-img">
+    <div class="item-info">
+      <h3>Playera Oversize</h3>
+      <p>89.99 Bs</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <img src="playera3.jpg" class="main-img">
+    <img src="playera4.jpg" class="hover-img">
+    <div class="item-info">
+      <h3>Playera Urbana</h3>
+      <p>69.99 Bs</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <img src="ropa1.jpg" class="main-img">
+    <img src="ropa2.jpg" class="hover-img">
+    <div class="item-info">
+      <h3>Ropa Urbana Premium</h3>
+      <p>129.99 Bs</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <img src="ropa3.jpg" class="main-img">
+    <img src="ropa4.jpg" class="hover-img">
+    <div class="item-info">
+      <h3>Chaqueta UrbanMac</h3>
+      <p>159.99 Bs</p>
+    </div>
+  </div>
+
+  <!-- GORRAS -->
+  <div class="item">
+    <img src="gorra1.jpg" class="main-img">
+    <img src="gorra2.jpg" class="hover-img">
+    <div class="item-info">
+      <h3>Gorra Clásica</h3>
+      <p>79.99 Bs</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <img src="gorra3.jpg" class="main-img">
+    <img src="gorra4.jpg" class="hover-img">
+    <div class="item-info">
+      <h3>Gorra Street</h3>
+      <p>89.99 Bs</p>
+    </div>
+  </div>
+
+</section>
+
+</body>
+</html>

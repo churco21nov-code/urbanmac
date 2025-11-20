@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gorras - UrbanMac</title>
+<style>
+* {box-sizing:border-box; margin:0; padding:0; font-family:'Segoe UI', sans-serif;}
+body {background:#121212; color:#f5f5f5; scroll-behavior:smooth;}
+header {background:#000; color:#fff; padding:15px 30px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 3px 10px rgba(0,0,0,0.6); position:sticky; top:0; z-index:10;}
+header h1 {font-size:1.5em;}
+header .btn {padding:8px 15px; background:#1abc9c; color:#fff; border-radius:5px; text-decoration:none; font-weight:bold;}
+.banner {background:#1abc9c; color:#fff; text-align:center; padding:18px; margin:20px; border-radius:10px; font-size:1.3em; font-weight:bold; box-shadow:0 3px 12px rgba(0,0,0,0.5);}
+h2 {text-align:center; color:#1abc9c; margin:40px 0 25px; font-size:1.8em;}
+.descripcion {text-align:center; width:80%; margin:auto 0 25px; font-size:1.1em; color:#d2d2d2; line-height:1.6em;}
+.buscador {text-align:center; margin:20px 0;}
+.buscador input {padding:8px; width:250px; border-radius:5px; border:none; outline:none;}
+.buscador button {padding:8px 12px; border:none; border-radius:5px; background:#1abc9c; color:#000; cursor:pointer; font-weight:bold;}
+.buscador button:hover {background:#16a085;}
+.productos {display:flex; flex-wrap:wrap; gap:30px; justify-content:center; padding-bottom:50px;}
+.producto {width:260px; background:#1e1e1e; padding:15px; border-radius:10px; text-align:center; box-shadow:0 5px 15px rgba(0,0,0,0.6); transition:0.2s; position:relative; display:none;}
+.producto.show {display:block;}
+.producto:hover {transform:scale(1.05); box-shadow:0 10px 25px rgba(0,0,0,0.8);}
+.producto img {width:100%; height:210px; object-fit:cover; border-radius:10px;}
+.badge {position:absolute; top:10px; right:10px; padding:5px 10px; background:#e74c3c; border-radius:5px; font-size:0.8em; font-weight:bold;}
+.btn-ver {margin-top:10px; padding:10px 15px; background:#1abc9c; border:none; border-radius:6px; color:white; font-weight:bold; cursor:pointer;}
+.btn-ver:hover {background:#16a085;}
+/* Modal */
+.modal {display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:100;}
+.modal-content {background:#1e1e1e; padding:20px; border-radius:10px; width:90%; max-width:500px; color:#fff; position:relative;}
+.close {position:absolute; top:10px; right:15px; font-size:24px; cursor:pointer;}
+.detalles ul {padding-left:20px;}
+/* Acordeón */
+.acordeon {max-width:800px; margin:50px auto;}
+.acordeon .item {margin-bottom:10px;}
+.acordeon-btn {width:100%; background:#1e1e1e; color:#1abc9c; padding:12px; font-weight:700; border:none; border-radius:8px; text-align:left; cursor:pointer; transition:0.3s;}
+.acordeon-btn:hover {background:#16a085; color:#000;}
+.acordeon-content {display:none; background:#151515; padding:12px; color:#ccc; border-radius:0 0 8px 8px;}
+/* Comentarios */
+.comentarios {max-width:800px; margin:30px auto; display:flex; flex-direction:column; gap:15px;}
+.comentario {background:#1e1e1e; padding:12px; border-radius:8px; color:#ccc; box-shadow:0 4px 10px rgba(0,0,0,0.5);}
+.mapa-referencia {display:flex; gap:20px; max-width:900px; margin:30px auto;}
+.map-container {flex:2;}
+.tarjeta-referencia {flex:1; background:#1e1e1e; padding:15px; border-radius:10px; color:#ccc; box-shadow:0 4px 10px rgba(0,0,0,0.5);}
+.tarjeta-referencia h3 {color:#1abc9c; margin-bottom:10px;}
+footer {background:#000; padding:30px 20px; text-align:center; color:#1abc9c;}
+.footer-social {display:flex; justify-content:center; gap:20px; margin-bottom:15px;}
+.footer-social a {color:#1abc9c; font-size:24px; transition:0.3s;}
+.footer-social a:hover {color:#16a085;}
+.paginacion {text-align:center; margin:20px 0;}
+.paginacion button {padding:8px 14px; margin:0 5px; border:none; border-radius:5px; background:#1abc9c; color:#000; font-weight:bold; cursor:pointer; transition:0.3s;}
+.paginacion button:hover {background:#16a085;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🧢 Gorras UrbanMac</h1>
+  <a href="index.html" class="btn">Inicio</a>
+</header>
+
+<div class="banner">🔥 Nueva Colección 2025 — Estilo urbano renovado 🔥</div>
+
+<div class="buscador">
+  <input type="text" id="searchInput" placeholder="Buscar gorra...">
+  <button onclick="buscar()">Buscar</button>
+</div>
+
+<!-- PRODUCTOS DESTACADOS -->
+<h2>Gorras Destacadas</h2>
+<p class="descripcion">Colección urbana y deportiva de alta calidad.</p>
+<div class="productos" id="productosDestacados">
+  <div class="producto" data-nombre="Gorra Negra Clásica">
+    <span class="badge">New</span>
+    <img src="RETRASO1.jpg" alt="Gorra Negra Clásica">
+    <h3>Gorra Negra Clásica</h3>
+    <p>79.99 Bs</p>
+    <button class="btn-ver" onclick="abrirModal(this)">Ver más</button>
+    <div class="detalles">
+      <ul><li>Ajustable</li><li>Material premium</li><li>Comodidad garantizada</li><li>Perfecta para uso diario</li></ul>
+    </div>
+  </div>
+  <div class="producto" data-nombre="Gorra Azul Deportiva">
+    <span class="badge">Hot</span>
+    <img src="RETRASO2.jpg" alt="Gorra Azul Deportiva">
+    <h3>Gorra Azul Deportiva</h3>
+    <p>74.99 Bs</p>
+    <button class="btn-ver" onclick="abrirModal(this)">Ver más</button>
+    <div class="detalles"><ul><li>Secado rápido</li><li>Liviana</li><li>Transpirable</li><li>Ideal para deporte</li></ul></div>
+  </div>
+  <div class="producto" data-nombre="Gorra Roja Premium">
+    <span class="badge">New</span>
+    <img src="RETRASO3.jpg" alt="Gorra Roja Premium">
+    <h3>Gorra Roja Premium</h3>
+    <p>89.99 Bs</p>
+    <button class="btn-ver" onclick="abrirModal(this)">Ver más</button>
+    <div class="detalles"><ul><li>Bordado fino</li><li>Alta calidad</li><li>Edición exclusiva</li></ul></div>
+  </div>
+  <div class="producto" data-nombre="Gorra Verde Urbana">
+    <span class="badge">New</span>
+    <img src="RETRASO4.jpg" alt="Gorra Verde Urbana">
+    <h3>Gorra Verde Urbana</h3>
+    <p>82.99 Bs</p>
+    <button class="btn-ver" onclick="abrirModal(this)">Ver más</button>
+    <div class="detalles"><ul><li>Colores vivos</li><li>Liviana</li><li>Resistente</li></ul></div>
+  </div>
+</div>
+<div class="paginacion" id="paginacionDestacados"></div>
+
+<!-- PRODUCTOS PREMIUM -->
+<h2>Gorras Premium</h2>
+<p class="descripcion">Diseños exclusivos con materiales resistentes y bordados de alto detalle.</p>
+<div class="productos" id="productosPremium">
+  <div class="producto" data-nombre="Gorra Minimalista">
+    <span class="badge">Premium</span>
+    <img src="RETRASO4.jpg" alt="Gorra Minimalista">
+    <h3>Gorra Minimalista</h3>
+    <p>109.99 Bs</p>
+    <button class="btn-ver" onclick="abrirModal(this)">Ver más</button>
+    <div class="detalles"><ul><li>Bordado elegante</li><li>Material suave</li><li>Resistente al desgaste</li></ul></div>
+  </div>
+  <div class="producto" data-nombre="Gorra Negra Pro">
+    <span class="badge">Premium</span>
+    <img src="RETRASO1.jpg" alt="Gorra Negra Pro">
+    <h3>Gorra Negra Pro</h3>
+    <p>119.99 Bs</p>
+    <button class="btn-ver" onclick="abrirModal(this)">Ver más</button>
+    <div class="detalles"><ul><li>Resistente al agua</li><li>Durabilidad superior</li></ul></div>
+  </div>
+  <div class="producto" data-nombre="Gorra Edición Limitada">
+    <span class="badge">Premium</span>
+    <img src="RETRASO2.jpg" alt="Gorra Edición Limitada">
+    <h3>Gorra Edición Limitada</h3>
+    <p>129.99 Bs</p>
+    <button class="btn-ver" onclick="abrirModal(this)">Ver más</button>
+    <div class="detalles"><ul><li>Edición numerada</li><li>Diseño exclusivo</li><li>Solo pocas unidades</li></ul></div>
+  </div>
+  <div class="producto" data-nombre="Gorra Azul Elite">
+    <span class="badge">Premium</span>
+    <img src="RETRASO3.jpg" alt="Gorra Azul Elite">
+    <h3>Gorra Azul Elite</h3>
+    <p>135.99 Bs</p>
+    <button class="btn-ver" onclick="abrirModal(this)">Ver más</button>
+    <div class="detalles"><ul><li>Material premium</li><li>Bordado fino</li><li>Exclusiva</li></ul></div>
+  </div>
+</div>
+<div class="paginacion" id="paginacionPremium"></div>
+
+<!-- PRODUCTOS ECONÓMICOS -->
+<h2>Gorras Económicas</h2>
+<p class="descripcion">Para quienes buscan estilo sin gastar demasiado.</p>
+<div class="productos" id="productosEconomicos">
+  <div class="producto" data-nombre="Gorra Básica Negra">
+    <span class="badge">Low</span>
+    <img src="RETRASO3.jpg" alt="Gorra Básica Negra">
+    <h3>Gorra Básica Negra</h3>
+    <p>49.99 Bs</p>
+    <button class="btn-ver" onclick="abrirModal(this)">Ver más</button>
+    <div class="detalles"><ul><li>Duración media</li><li>Cómoda</li><li>Ideal para diario</li></ul></div>
+  </div>
+  <div class="producto" data-nombre="Gorra Blanca Simple">
+    <span class="badge">Low</span>
+    <img src="RETRASO4.jpg" alt="Gorra Blanca Simple">
+    <h3>Gorra Blanca Simple</h3>
+    <p>45.99 Bs</p>
+    <button class="btn-ver" onclick="abrirModal(this)">Ver más</button>
+    <div class="detalles"><ul><li>Transpirable</li><li>Liviana</li><li>Buen precio</li></ul></div>
+  </div>
+  <div class="producto" data-nombre="Gorra Tela Económica">
+    <span class="badge">Low</span>
+    <img src="RETRASO1.jpg" alt="Gorra Tela Económica">
+    <h3>Gorra Tela Económica</h3>
+    <p>39.99 Bs</p>
+    <button class="btn-ver" onclick="abrirModal(this)">Ver más</button>
+    <div class="detalles"><ul><li>Buena calidad/precio</li><li>Ideal para cualquier ocasión</li></ul></div>
+  </div>
+  <div class="producto" data-nombre="Gorra Gris Casual">
+    <span class="badge">Low</span>
+    <img src="RETRASO2.jpg" alt="Gorra Gris Casual">
+    <h3>Gorra Gris Casual</h3>
+    <p>44.99 Bs</p>
+    <button class="btn-ver" onclick="abrirModal(this)">Ver más</button>
+    <div class="detalles"><ul><li>Liviana</li><li>Duradera</li></ul></div>
+  </div>
+</div>
+<div class="paginacion" id="paginacionEconomicos"></div>
+
+<!-- Acordeón -->
+<div class="acordeon">
+  <div class="item">
+    <button class="acordeon-btn">Tela</button>
+    <div class="acordeon-content"><p>Material de alta calidad, suave y duradero.</p></div>
+  </div>
+  <div class="item">
+    <button class="acordeon-btn">Calidad</button>
+    <div class="acordeon-content"><p>Costuras reforzadas y bordado profesional.</p></div>
+  </div>
+  <div class="item">
+    <button class="acordeon-btn">Recomendaciones</button>
+    <div class="acordeon-content"><p>Lavado a mano recomendado para mantener forma.</p></div>
+  </div>
+</div>
+
+<!-- Comentarios -->
+<div class="comentarios">
+  <div class="comentario"><strong>Juan P.</strong>: Excelente gorra, muy cómoda.</div>
+  <div class="comentario"><strong>Maria S.</strong>: Me encanta el diseño y color.</div>
+  <div class="comentario"><strong>Carlos R.</strong>: Buena calidad y envío rápido.</div>
+</div>
+
+<!-- Mapa y tarjeta -->
+<div class="mapa-referencia">
+  <div class="map-container">
+    <iframe src="https://www.google.com/maps?q=La+Paz,+Bolivia&output=embed" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+  </div>
+  <div class="tarjeta-referencia">
+    <h3>Ubicación</h3>
+    <p>Calle Ficticia 123</p>
+    <p>La Paz, Bolivia</p>
+    <p>Tel: +591 70000000</p>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <span class="close" onclick="cerrarModal()">&times;</span>
+    <div id="modal-detalles"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-social">
+    <a href="https://www.facebook.com" target="_blank">FB</a>
+    <a href="https://www.whatsapp.com" target="_blank">WA</a>
+    <a href="https://www.tiktok.com" target="_blank">TT</a>
+  </div>
+  © 2025 UrbanMac — Calidad y estilo urbano
+</footer>
+
+<script>
+function abrirModal(btn){
+  const modal=document.getElementById('modal');
+  document.getElementById('modal-detalles').innerHTML=btn.nextElementSibling.innerHTML;
+  modal.style.display='flex';
+}
+function cerrarModal(){document.getElementById('modal').style.display='none';}
+
+function buscar(){
+  const filtro=document.getElementById('searchInput').value.toLowerCase();
+  document.querySelectorAll('.producto').forEach(p=>{
+    p.style.display=p.dataset.nombre.toLowerCase().includes(filtro)?'block':'none';
+  });
+}
+
+document.querySelectorAll('.acordeon-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const c=btn.nextElementSibling;
+    c.style.display=c.style.display==='block'?'none':'block';
+  });
+});
+
+function paginar(idContenedor){
+  const cont=document.getElementById(idContenedor);
+  const productos=Array.from(cont.querySelectorAll('.producto'));
+  const itemsPerPage=2;
+  let currentPage=1;
+  function mostrarPagina(page){
+    currentPage=page;
+    productos.forEach((p,i)=>p.style.display=(i>=(page-1)*itemsPerPage && i<page*itemsPerPage)?'block':'none');
+    const pagDiv=cont.nextElementSibling; 
+    pagDiv.innerHTML='';
+    const totalPages=Math.ceil(productos.length/itemsPerPage);
+    for(let i=1;i<=totalPages;i++){
+      const btn=document.createElement('button');
+      btn.textContent=i;
+      btn.onclick=()=>mostrarPagina(i);
+      pagDiv.appendChild(btn);
+    }
+  }
+  mostrarPagina(1);
+}
+
+paginar('productosDestacados');
+paginar('productosPremium');
+paginar('productosEconomicos');
+</script>
+</body>
+</html>

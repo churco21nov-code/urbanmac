@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda de Moda - UrbanMac</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo-menu">
+        <h1>👕 <span class="logo-text">URBANMAC</span></h1>
+        <button id="menu-toggle" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
+      </div>
+      <ul id="nav-menu" class="nav-menu">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="gorras.html">gorras</a></li>
+        <li><a href="producto2.html">ropas</a></li>
+        <li><a href="productos3.html">ofertas</a></li>
+        <li><a href="#">Ofertas</a></li>
+      </ul>
+      <div class="buscador">
+        <input type="text" id="searchInput" placeholder="Buscar productos...">
+        <button onclick="buscarProducto()">🔍</button>
+      </div>
+    </nav>
+  </header>
+
+  <aside>
+    <h2>Categorías</h2>
+    <ul>
+      <li><a href="#"><i class="fas fa-female"></i> Ropa de Mujer</a></li>
+      <li><a href="#"><i class="fas fa-male"></i> Ropa de Hombre</a></li>
+      <li><a href="#"><i class="fas fa-hat-cowboy"></i> Accesorios</a></li>
+      <li><a href="#"><i class="fas fa-tags"></i> Ofertas</a></li>
+      <li><a href="#"><i class="fas fa-star"></i> Novedades</a></li>
+    </ul>
+  </aside>
+
+  <main>
+    <!-- Bienvenida -->
+    <div class="bienvenida">
+      <h2>Bienvenidos a UrbanMac</h2>
+      <p>Aquí vendemos ropa de la mejor calidad, con estilo y variedad para todos. Contamos con prendas para todas las edades, tallas y colores, garantizando que siempre encuentres lo que buscas.</p>
+    </div>
+
+    <!-- Carrusel -->
+    <div class="carousel">
+      <div class="slides">
+        <img src="FOTO1.jpg" alt="Moda 1">
+        <img src="FOTO2.jpg" alt="Moda 2">
+        <img src="FOTO3.jpg" alt="Moda 3">
+      </div>
+    </div>
+
+    <!-- Contador de vistas -->
+    <div class="contador-vistas">
+      <p>Vistas de la página: <span id="contador">0</span></p>
+    </div>
+
+    <!-- Productos -->
+    <div class="productos" id="pagina1">
+      <div class="producto">
+        <a href="gorras.html"><img src="FOTO6.jpg" alt="Gorras"></a>
+        <h3>GORRAS <span class="etiqueta nuevo">Nuevo</span></h3>
+        <p>79.99 Bs</p>
+      </div>
+      <div class="producto">
+        <a href="producto2.html"><img src="ROPA1.jpg" alt="Ropa"></a>
+        <h3>ROPAS</h3>
+        <p>99.99 Bs</p>
+      </div>
+    </div>
+
+    <div class="productos" id="pagina2" style="display:none;">
+      <div class="producto">
+        <a href="productos3.html"><img src="ROPA4.jpg" alt="Pantalones"></a>
+        <h3>PANTALONES</h3>
+        <p>129.99 Bs</p>
+      </div>
+      <div class="producto">
+        <a href="#"><img src="ROPA3.jpg" alt="Accesorios"></a>
+        <h3>ACCESORIOS</h3>
+        <p>49.99 Bs</p>
+      </div>
+    </div>
+
+    <!-- Paginación -->
+    <div class="paginacion">
+      <button onclick="mostrarPagina(1)">1</button>
+      <button onclick="mostrarPagina(2)">2</button>
+    </div>
+
+    <!-- Acordeón de información -->
+    <div class="acordeon">
+      <div class="item">
+        <button class="acordeon-btn">Telas</button>
+        <div class="acordeon-content">
+          <p>Algodón 100%, poliéster, mezcla de telas resistentes y suaves.</p>
+        </div>
+      </div>
+      <div class="item">
+        <button class="acordeon-btn">Calidad</button>
+        <div class="acordeon-content">
+          <p>Nuestras prendas son de alta durabilidad y confort para todo tipo de uso.</p>
+        </div>
+      </div>
+      <div class="item">
+        <button class="acordeon-btn">Recomendaciones</button>
+        <div class="acordeon-content">
+          <p>Lavado a mano recomendado para mantener colores y forma.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comentarios -->
+    <div class="resenas">
+      <div class="resena"><p>Juan: Excelente calidad, me encantó mi gorra.</p></div>
+      <div class="resena"><p>Maria: Ropa cómoda y a buen precio.</p></div>
+      <div class="resena"><p>Carlos: Llegó rápido y muy bien presentada.</p></div>
+    </div>
+
+    <!-- Mapa y tarjeta -->
+    <div class="mapa-referencia">
+      <div class="map-container">
+        <h2>Nuestra ubicación</h2>
+        <iframe src="https://maps.google.com/maps?q=La%20Paz,%20Bolivia&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+      <div class="tarjeta-referencia">
+        <h3>Contacto</h3>
+        <p>Calle Ejemplo #123</p>
+        <p>La Paz, Bolivia</p>
+        <p>+591 70000000</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-wrapper">
+      <div class="footer-column">
+        <h3>Redes Sociales</h3>
+        <div class="footer-social">
+          <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="https://wa.me/59170000000" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 UrbanMac. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <script>
+    // Contador de vistas
+    let contador = localStorage.getItem("contador") || 0;
+    contador++;
+    localStorage.setItem("contador", contador);
+    document.getElementById("contador").textContent = contador;
+
+    // Menú hamburguesa
+    const menuToggle = document.getElementById("menu-toggle");
+    const navMenu = document.getElementById("nav-menu");
+    menuToggle.addEventListener("click", () => {
+      navMenu.classList.toggle("active");
+    });
+
+    // Paginación
+    function mostrarPagina(num) {
+      const paginas = document.querySelectorAll('.productos');
+      paginas.forEach(p => p.style.display = 'none');
+      document.getElementById('pagina'+num).style.display = 'grid';
+    }
+
+    // Buscador funcional
+    function buscarProducto() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const productos = document.querySelectorAll('.productos .producto');
+      productos.forEach(prod => {
+        const nombre = prod.querySelector('h3').textContent.toLowerCase();
+        const precio = prod.querySelector('p').textContent.toLowerCase();
+        if(nombre.includes(input) || precio.includes(input)){
+          prod.style.display = 'block';
+        } else {
+          prod.style.display = 'none';
+        }
+      });
+    }
+
+    // Acordeón
+    const acordeonBtns = document.querySelectorAll('.acordeon-btn');
+    acordeonBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        content.style.display = (content.style.display === 'block') ? 'none' : 'block';
+      });
+    });
+  </script>
+</body>
+</html>
